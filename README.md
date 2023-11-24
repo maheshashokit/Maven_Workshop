@@ -1,2 +1,2 @@
-# Maven_Workshop
-This Respoistory is used for Maven Workshop
+# Maven Workshop
+This Workspace is for Maven Workshop Application & Notes

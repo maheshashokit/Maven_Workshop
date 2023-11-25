@@ -1,0 +1,650 @@
+                                              "Welcome To Ashok IT"				
+			                     "Apache Maven Workshop"
+                                              Date  : 25/11/2023
+					        (Session - 01)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+*****************
+Workshop Content
+*****************
+1) Background of Maven
+
+2) Build Tool
+
+3) Introduction To Maven
+
+4) Environmental Setup 
+
+5) Maven Terminologies
+
+6) Standard Maven Project Structure
+
+7) Working with Maven
+
+    * CLI Interface
+
+    * Eclipse IDE & Intellij IDE
+
+8) Maven Repoistories
+
+9) Dependency Management
+
+10) Maven Scopes
+
+11) Miscellanous Topics
+
+12) Q & A Session
+
+**********************
+1) Background of Maven
+**********************
+* Generally We are developing the several kinds of applications in Java such as
+
+    -> Standalone Application / Desktop Application
+
+    -> Web Application
+
+    -> Distributed Application
+
+* Inorder to develop projects in the realtime we required lot of Jar's to be part of Project
+
+     -> Oracle/MySQL Jars.
+
+     -> Servlet-api.jar & jsp-api.jar
+
+     -> Spring Jars.
+
+     -> Hibernate Jars
+
+     -> Struts Jars
+
+     -> Apache POI Jars
+
+     -> Itext Jars etc.,
+
+* Its very hard to collect the above Jar Files & adding to classpath of our Project and also we need to copy the required       Jar's from one environment to another environment.
+
+* Programmers are using different IDE's for developing the Project such as Eclipse, IntelliJ, NetBeans,MyEClipse,visualStudio   etc., and if we are trying to import the project from one IDE to another IDE it will not works because project Structure      will be varying from one IDE to another IDE.
+
+* Compiling and Packaging and documentation of Project need to be generated explictly by the Programmer.
+
+* Inorder to overcome the above problems we required some kind of Automation mechanism i.e., Build Tool.
+
+**************
+2) Build Tool
+**************
+* The use of a build tool helps developers maintain consistency across different development environments, automate             repetitive tasks, and ensure that the build process is reproducible and reliable.
+
+* Some of the popular build tools in Java Eco System below
+
+  1.Apache Maven
+  ==============
+  * Maven is a widely used build tool that follows a convention-over-configuration approach. It uses a declarative XML file      (POM) to define project configuration.
+
+  2.Gradle
+  ========
+  * Gradle is a flexible and powerful build tool that uses a Groovy or Kotlin DSL (domain-specific language) for build            scripts. 
+
+  * It combines the best features of Apache Ant and Apache Maven.
+
+  3.Apache Ant
+  ============
+  * Ant is an older build tool that uses XML-based build scripts. While it's less common in newer projects, it is still used      in some legacy systems.
+
+********************************
+3) Introduction to Apache Maven
+********************************
+* Maven is a widely used build automation and project management tool in the Java ecosystem. 
+
+* Maven is to simplify the process of building and managing Java projects, handling tasks such as compilation, testing,         packaging, and dependency management. 
+
+* Maven can also be used to build and manage projects written in C#, Ruby, Scala, and other languages.
+
+* Maven is hosted by Apache Software Foundation where it was formerly part of the Jakarta Project and initially released on     13 July 2004.
+
+* Maven uses a Project Object Model, which is an XML file (pom.xml) that describes the configuration of a Maven project. 
+  The POM file includes information about the project, its dependencies, build settings, and plugins.
+
+* Maven simplifies the management of project dependencies. Dependencies are specified in the POM file, and Maven                automatically downloads the required libraries from a central repository or a custom repository defined by the user.
+ 
+* Maven Central Repository is a centralized repository that stores a vast collection of libraries and plugins. Maven            automatically downloads dependencies from this repository unless a different repository is specified.
+
+i) Developing the Java projects with out Maven
+==============================================
+* There are many of problems facing during application development for programmers.
+
+1) Adding set of Jars in each project while developing the projects: 
+   In case of struts, spring, hibernate frameworks, we need to add set of jar files in each project. It must include all         the dependencies of jars also.
+
+2) Creating the right project structure: 
+   We must create the right project structure in servlet, struts etc, otherwise it will not be executed.
+
+3) Building and Deploying the project: 
+    We must have to build and deploy the project so that it may work.
+
+ii) Advantages of using Maven
+=============================
+* Maven makes a project easy to build.
+
+* Maven will provide the standard build process between the developers.
+
+* Maven will support transitive dependency.
+
+* Maven can know the 3300 + project templates to support various types of projects for development.
+
+* Maven will resolve project dependencies means it will download the Jars required for our project from central                 repoistory.
+ 
+* It is easy to migrate for new features of Maven.
+
+4) Environmental setup for maven tool
+=====================================
+* Tool Name        : Apache Maven Tool
+
+* Vendor           : Apache Software Foundation
+
+* Intial Release   : 13 July 2004
+
+* Developed        : Using Java
+
+* Current version  : 3.9.5 (JDK8 +) i.e., 5 October 2023
+
+* Download URL     : https://maven.apache.org/download.cgi? (apache-maven-3.9.5-bin.zip)
+
+* Onces downloaded the above zip file from maven website simply extract the zip file into folder.
+
+* Copy extracted folder into one of location in our local drives in harddisk.
+
+* Please make sure the following environmental variables correctly
+
+      * JAVA_HOME      (C:\Program Files\Java\jdk-17)
+      
+      * MAVEN_HOME     (C:\apache-maven-3.9.5)
+      
+      * path           (C:\apache-maven-3.9.5\bin)
+  
+      * JAVA_HOME  : A place where java software available in our machine.
+  
+      * MAVEN_HOME : A place where Maven software available in our machine.
+
+      * path       : In order to recognise the maven software by operating system and we can run the maven software 
+                     any one of our local drives.
+
+- After configuring the above variable correctly open command prompt and check with following command
+
+           "mvn -version" (Maven Software version number installed in your machine)
+
+5) Maven Terminologies
+======================
+archetype
+=========
+   It always tells to maven tool which type of project needed by the programmer whether it is standalone
+               application,webapplication,EJB application etc.,
+
+   -> If programmer needs a simple java project (or) standalone application below archetype need to be used.
+            "maven-archetype-quickstart"
+
+   -> If programmer needs a webapplication the below archetype need to be used as below
+           "maven-archetype-webapp"
+
+   -> If Programmer needs a EJB Application the below archetype need to be used as below
+           "maven-archetype-j2ee"
+
+artifactId
+========== 
+*  while creating maven project either by using Command Line (or) Using IDE we must provide the artifactId value which
+   is nothing but name of the project.
+   
+          artifactId : SampleApp
+
+groupId
+========
+*  While creating maven project either by using Command Line (or) Using IDE we must provide the groupId value is               nothing name of company which is to be unique value
+     
+         groupId : com.ashokit
+
+pom.xml
+=======
+* POM is an acronym for Project Object Model and it is an heart of maven tool.
+
+* POM will provide meta data all the project build configuration details which are required by maven.
+
+* Before Maven2 it was named as "project.xml" file But since Maven2 and Maven3 it is renamed as pom.xml.
+
+* when we create maven project then pom.xml file will be created automatically in the project itself.
+
+* In Maven projects pom.xml file is able to provide no of responsbilities
+    1) project description
+    2) Repository information
+    3) Dependency management
+    4) Build configurations
+    5) Build profiles
+    6) project inheritances
+
+Standard Maven Project Structure
+================================    
+           <<Project_Name>>
+                |---------------------> <<src>>
+                |                        |-> <<main>>
+		|			 |    |-> <<java>> 
+                |                        |           |-> *.java
+		|	                 |
+                |                        |    |-> <<resources>>
+                |                        |           |-> *.properties
+		|                        |
+                |                        |-> <<test>>
+		|			 |     |-> <<java>> 
+                |                        |             |-> *.java
+		|			 |
+                |                        |     |-> <<resources>>
+        	|                        |           |-> *.properties
+		|
+		|---------------------> <<target>>
+                |
+		|
+		|---------------------> pom.xml
+
+Maven Goals
+===========
+* clean
+
+* compile
+
+* test
+
+* package
+
+* exec:java
+
+6) Working With Maven
+=====================
+
+Creating Standalone Application in Maven(Interactive Mode) using CommandLine interface
+======================================================================================
+1) Create one workspace directory in our local drive for Maven stuff i.e., D:\JavaWorkspace\MavenWorkspace\
+
+2) Creating Maven project in interactive mode using command prompt
+   
+     G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\mvn archetype:generate
+  
+   - The above command will get all the project templates from maven repoistory and make sure when we execute
+     the above command as first time make sure that your system must be connected to internet.
+
+   - While generating the maven project following input has to be provided by the programmer
+        
+        standalone application in maven 3.9.5 version project id is :2088
+        quick start version : 8
+        groupId             : com.ashokit
+        artifactId          : MavenConsoleApp
+        Snapshot Version    : 1.0-SNAPSHOT
+        Package name        : <Hit Enter>
+        confirm properties  : Y
+        
+    - After provided the above inputs while creating maven project we need to observe "Build Success" or not.
+      If Build Success then we can see the "MavenConsoleApp" project in "G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP" directory.
+
+    - Following the Maven project structure for SampleApp
+    
+              MavenConsoleApp
+               |-> pom.xml
+               |-> src
+                    |-> main
+                          |-> java
+                               |->com
+				   |->ashokit(package name) 
+                                        |-> App.java (Main method will be there)
+                    |-> test
+                          |-> java
+                               |->ashokit
+                                   |-> ashokit(package name)                                        
+                                        |-> AppTest.java
+
+     - Added the below SOP statements
+          AppTest.java -> System.out.println("Welcome To AshokIT For Maven Workshop Test Case....")
+          App.java     -> System.out.println("Welcome To AshokIT For Maven WorkShop Hyderabad...");
+
+
+3) Now we need to Compile the Maven project(SampleApp) by using following command
+
+       G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp>mvn compile
+
+   - The above maven command will compile all java file in the specified maven project.
+   - It will create "target" directory under our maven project.
+   - target directory contains .class files compiled by maven.
+
+         G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp>mvn clean
+
+   - The above command will clean the project (or) removing target directory from our maven project
+
+         G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp>mvn test
+
+   - The above command will execute test cases folder in our maven projrect and we can see the following 
+     SOP statement while executing mvn test command "Welcome To Naresh IT Test Case in Maven".
+
+    	 G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp>mvn package
+
+   - The above command will prepare our maven project either in the form of JAR (or) WAR (or) EAR file.
+     Maven prepared JAR file will be available in "target" folder.
+
+         G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp\target\MavenConsoleApp-1.0-SNAPSHOT.jar
+    
+   - If we want execute the main class of the maven project the above JAR file need to be set in the classpath
+        set classpath=G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp\target\MavenConsoleApp-1.0-SNAPSHOT.jar
+
+   - Now we can execute the main class of under src directory 
+        G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp\java app.App
+
+     OUTPUT
+     ======
+         Welcome To AshokIT For Maven WorkShop Hyderabad...
+
+
+   - In the above approach the programmer has to be set classpath manually for JAR file which is to be executed main
+     class.
+
+   - Inorder to overcome the problem we can take help of maven to execute main class of our maven project by 
+     configuring the below plugin in "pom.xml" file
+         <plugin>
+           <groupId>org.codehaus.mojo</groupId>
+           <artifactId>exec-maven-plugin</artifactId>
+           <version>3.1.1</version>
+           <configuration>
+            <mainClass>com.ashokit.App</mainClass>
+          </configuration>
+         </plugin>
+
+   - If we configured the above plugin in the pom.xml using the following command to execute the main class of 
+     the maven project
+	G:\ASHOKIT_WORKSPACE\MAVEN-WORKSHOP\MavenConsoleApp>mvn exec:java 
+
+      OUTPUT
+      ======
+       Welcome To AshokIT For Maven WorkShop Hyderabad...
+
+Creating the Standalone project using maven(Batch Mode):
+=========================================================             
+   D:\JAVA WORKSPACE\MAVENWORKSPACE>mvn archetype:generate -DgroupId=com.ashokit -DartifactId=MavenConsoleBatchModeApp
+        -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+ - The above mvn command will create the project with name "MavenConsoleBatchModeApp" using batch mode creation.
+
+ - Onces the project has created the following structure as below
+             
+            MavenConsoleBatchModeApp
+               |-> pom.xml
+               |-> src
+                     |-> main
+                           |-> com
+                                |-> ashokit
+                                     |-> App.java
+                     |-> test
+                          |-> com
+                               |-> ashokit
+                                    |-> AppTest.java
+
+  NOTE
+  ====
+   - If we create maven project using batch mode by default maven project will come the JDK1.5 version before 
+     doing maven compile configure maven-compiler plugin with specified version as below in pom.xml
+		<plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>3.8.1</version>
+                  <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                  </configuration>
+                </plugin>
+                <plugin>
+		   <groupId>org.apache.maven.plugins</groupId>
+	   	   <artifactId>maven-javadoc-plugin</artifactId>
+		   <version>3.1.1</version>
+		</plugin>
+
+    - After configuring the maven compiler plugin in pom.xml file now we can use below mvn commands 
+               mvn clean
+               mvn compile
+               mvn test
+               mvn package
+               mvn exec:java
+
+Creating webapplication using maven tool 
+========================================
+- Inorder to create the webapplication in maven using command line interface following command can be used below
+
+    D:\JAVA WORKSPACE\MAVENWORKSPACE> mvn archetype:generate -DgroupId = com.nit -DartifactId = LoginApp
+                                     -DarchetypeArtifactId = maven-archetype-webapp -DinteractiveMode = false
+
+- Following deployement structure for webapplication provided by maven.
+               LoginApp
+                   |-> pom.xml
+                   |-> src
+                        |-> main
+                             |-> resources
+                                   |->
+                             |-> webapp
+                                   |->index.jsp
+                                   |-> WEB-INF
+                                          |->web.xml
+
+
+- After creating the LoginApp application open the pom.xml and add the following maven compiler plugin as below
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    
+- Now we can compile & package the "LoginApp" by using following commands
+                   mvn compile
+                   mvn package
+
+- Onces we done with package programmer can take the war file from "target" directory and deploy into any webserver to test     the webapplication.
+
+- The following things needs to be done by programmer  
+    1) Copy the war file from target directory of maven webapplication i.e., LoginApp.
+    2) Deploy the war file into deployement directory of the webserver.
+    3) Programmer has to be start the webserver and test the webapplication and finally stop the webserver.
+
+- Inorder to overcome the above problems to the programmer maven provided the tomcat plugin inorder to deploy 
+  the webapplication and start & stop the webserver automatically by using following plugin as below
+             <plugin>
+		<groupId>org.apache.tomcat.maven</groupId>
+		<artifactId>tomcat7-maven-plugin</artifactId>
+		<version>2.2</version>
+		<configuration>
+			<port>5566</port>   //Configure port number
+			<path>/LoginApp</path>   //Configure application root URL
+		</configuration>
+              </plugin>
+
+- To Start the above tomcat server by maven we need to follow the below mvn command
+        D:\JAVA WORKSPACE\MAVENWORKSPACE\LoginApp>mvn tomcat7:run
+
+Installing the Jar File into local repoistory
+==============================================
+  * By using mvn:install command we can install and particular JAR file into local repoistory which is an 
+    (.m2 directory) of local machine.
+
+  * The main advantage of placing the jar file into local repoistory we can use that Jar file dependency in any 
+    no of projects.
+
+  * The best example is ojdbc6.jar will not be downloadable from central repoistory because it is an licensed 
+    jar file inorder to overcome the programmer need to install the ojdbc6.jar into local repoistory by
+    following command
+     
+     D:\JAVA WORKSPACE\MAVENWORKSPACE>mvn install:install-file -DgroupId=com.ashokit -DartifactId=oracle-jdbc    
+                                                               -Dversion=1.0.1   -Dpackaging=jar 
+                                                               -Dfile=d:\ojdbc6.jar
+
+   * If the above jar file is installed successfully we can use dependency for many project as below configuration
+                        
+                          <dependency>
+                             <groupId>com.ashokit</groupId>
+                             <artifactId>oracle-jdbc</artifactId>
+                            <version>1.0.1/version>
+                          </dependency> 
+
+Maven Repoistories
+==================
+ * A place where the maven get the dependent jar files called as "Repoistory" such as local machine,remote server,
+   internet etc.,
+ 
+ * Repoistories are able to manage all the Jar files which are required by our applications.
+
+ * There are three types of repositories are existed in maven
+  
+  1) Local Repoistory
+  ===================
+   - It is alocation in our system which will be created by an mvn command intially.
+  
+   - In our system local repoistory is existed at c:\users\<username>\.m2\repoistory
+  
+   - when we required jar files in our application then MAVEN will search the dependencies first in local repoistory.
+
+ 2) Central Repoistory
+ =====================
+   - It is default repoistory in MAVEN and it is existed in internet as particular URL.
+
+   - Apache software foundation has provided a seperate central repoistory in the following URL
+     http://repo.maven.apache.org/maven2/
+ 
+   - We are able to use third party provided central repoistiory in MAVEN.
+           https://repository.jboss.org/nexus/content/repositories/
+
+   - If we want to use third party provided repoistories in our application then we must configure it in pom.xml
+         <project>
+           <repoistories>
+             <repoistory>
+                   <id>jboss</id>
+		   <name>jboss repo</name>
+                   <url>https://repository.jboss.org/nexus/content/repositories/</url>
+             </repoistory>
+           </repoistories>
+         </project>
+  
+  3) Remote Repoistory
+  ======================
+    - If the dependencies are not existed in local repoistory and central repoistory then maven will be search
+      for them in Remote Repoistory.
+
+Summary On Repoistory
+=====================
+1) If dependencies are existed in local repoistory then MAVEN will use that.
+
+2) If dependencies are not existed in local repository then MAVEN will search at central repoistory.
+   If dependencies are existed in central repoistory then MAVEN will download them to local repoistory.
+
+3) If dependencies are not existed in central repository then MAVEN will search at remote repoistory.
+
+4) If the dependecies are existed in Remote repoistory then MAVEN will download from Remote repoistory to 
+       local repoistory.
+
+5) If remote repository is not existed (or) dependency are not existed in Remote repoistory then MAVEN
+      will raise some exceptions.
+
+
+Dependency Management
+=====================
+  - In MAVEN Projects dependency means that Dependent JAR File.
+  
+  - MAVEN is not giving any option to developers to download the required JAR Files.
+
+  - MAVEN will download the JAR Files and MAVEN will keep that JAR Files in our application but we must specify
+    dependencies which required for our application in the form of XML file i.e., pom.xml
+
+  - To configure the dependency in pom.xml as below    
+          <project>
+              <dependencies>
+                   <dependency>
+                       <groupId>org.hibernate</groupId>
+                       <artifactId>hibernate-core</artifactId>
+                       <version>3.4.6-Final</version>
+                       <scope>provided</scope>
+                   </dependency>
+
+                   <dependency>
+ 		      <groupId>org.springframework</groupId>
+                     <artifactId>spring-core</artifactId>
+                     <version>5.0.4.RELEASE</version>
+                     <scope>runtime</scope>
+                   </dependency>
+
+                  <dependency>
+ 		      <groupId>org.springframework</groupId>
+                     <artifactId>spring-context</artifactId>
+                     <version>5.0.4.RELEASE</version>
+                     <scope>runtime</scope>
+                  </dependency>
+              </dependencies>
+          </project>
+
+Maven Dependency scopes
+========================    
+- Maven dependency scope attribute is used to specify the visibility of a dependency, relative to the differentlifecycle       phases (build, test, runtime etc). 
+
+- Maven provides Some scopes i.e. compile, provided, runtime, test,system.
+
+Compile
+=======
+- This is maven default scope. Dependencies with compile scope are needed to build, test, and run the project.
+
+- Scope compile is to be required in most of the cases to resolve the import statements into your java classes           sourcecode.
+
+Provided
+========
+- Maven dependency scope provided is used during build and test the project. They are also required to run, but should not      exported, because the dependency will be provided by the runtime, for instance, by servlet container or application server.
+
+runtime
+=======
+ - Dependencies with maven dependency scope runtime are not needed to build, but are part of the classpath to test  and    run the project.
+
+test
+=====
+- Dependencies with maven dependency scope test are not needed to build and run the project. They are needed to compile        and run the unit tests.
+
+system
+======
+- Dependencies with system are similar to ones with scope provided. 
+
+- The only difference is system dependencies are not retrieved from remote repository. 
+
+- They are present under project’s subdirectory and are referred from there. See external dependency for more detail.
+
+	<dependency>
+           <groupId>extDependency</groupId>
+           <artifactId>extDependency</artifactId>
+           <scope>system</scope>
+           <version>1.0</version>
+           <systemPath>${basedir}\war\WEB-INF\lib\extDependency.jar</systemPath>
+        </dependency>
+      
+      |-> Maven Dependency scopes
+            |-> compile
+           |-> test
+           |-> run
+           |-> provided
+           |-> system
+      |-> plugins
+           |-> build plugins
+                 |-> compile plugin
+                 |-> execute plugin
+                 |-> javadoc plugin
+                 |-> Tomcat plugn
+           |-> reporting plugins
+
+6) Creating maven projects using command line interface(CLI)
+       |-> Creating maven project for standalone applications
+       |-> creating maven project for webapplications
+
+7) Integrating Maven with IDE
+       |-> Eclipse IDE
+       |-> Intellij IDE 
+
+    ********************End For Maven******************
+
+
+https://chat.whatsapp.com/LJccbUZiIpu5U8ZmOCWyN5
